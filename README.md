@@ -121,7 +121,11 @@ Look at them. Especially the busiest page and the cover.
 
 ## Use with Claude Code
 
-Drop this repo into `~/.claude/skills/pdf-to-pptx/` (or any skills directory) and
+```bash
+git clone https://github.com/yuna78/pdf-to-pptx.git ~/.claude/skills/pdf-to-pptx
+```
+
+That makes it a global skill (alongside `html-to-pptx`) and
 `SKILL.md` makes it available as a skill — say "convert this PDF to PowerPoint" and it
 will run. It also works as a plain CLI with no Claude involved.
 

@@ -108,7 +108,11 @@ LibreOffice 装完 ~800 MB、许可证是 MPL-2.0。为四个平台各塞一份�
 
 ## 配合 Claude Code 使用
 
-把这个仓库放进 `~/.claude/skills/pdf-to-pptx/`（或任意 skills 目录），
+```bash
+git clone https://github.com/yuna78/pdf-to-pptx.git ~/.claude/skills/pdf-to-pptx
+```
+
+这样它就是一个全局 skill（和 `html-to-pptx` 并列），
 `SKILL.md` 会让它成为一个 skill——说「把这份 PDF 转成 PPT」就会触发。
 它同时也是一个不需要 Claude 的普通命令行工具。
 
