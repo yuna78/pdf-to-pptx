@@ -12,7 +12,7 @@ description: >-
 
 # pdf-to-pptx — PDF 转可编辑 PowerPoint
 
-完整文档见 [README.zh-CN.md](./README.zh-CN.md) / [README.md](./README.md)。
+完整文档见 [README.md](./README.md)（中文）/ [README.en.md](./README.en.md)。
 本文件是给 agent 看的操作要点。
 
 ## 什么时候用
