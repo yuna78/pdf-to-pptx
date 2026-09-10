@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# 转换产物（可再生，不进 git）— fixtures/ 下的样例 PDF 是例外，已显式提交
+*.pptx
+!tests/fixtures/*.pptx
+*-verify/

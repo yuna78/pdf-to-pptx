@@ -1,0 +1,39 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install LibreOffice, poppler and CJK fonts
+        run: |
+          sudo apt-get update
+          # fonts-noto-cjk matters: without a CJK font LibreOffice renders boxes
+          # and the end-to-end assertions become meaningless.
+          sudo apt-get install -y --no-install-recommends \
+            libreoffice-impress poppler-utils fonts-noto-cjk
+          fc-cache -f
+
+      - name: Install Python deps
+        run: pip install python-pptx pillow pytest
+
+      - name: Doctor
+        run: python scripts/convert.py --doctor
+
+      - name: Tests
+        run: python -m pytest tests/ -q
+
+      - name: Convert the fixture end to end
+        run: |
+          python scripts/convert.py tests/fixtures/sample-deck.pdf -o /tmp/out.pptx
+          test -s /tmp/out.pptx
