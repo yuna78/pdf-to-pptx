@@ -37,12 +37,18 @@ def ensure_deps() -> None:
 
     venv_py = VENV_DIR / "bin" / "python"
     if not venv_py.exists():
+        # 这一步会静默几分钟（网络慢时更久）。不打进度条的话，用户只看到光标
+        # 不动，多半会以为卡死然后 Ctrl+C —— 所以这里明确说要等，并让 pip 自己吐进度。
         print("[setup] 首次运行，创建 venv 并安装 python-pptx / pillow …", file=sys.stderr)
+        print("[setup] 这一步要下载依赖，通常 1–3 分钟；网络慢会更久，请不要中断。",
+              file=sys.stderr)
         subprocess.run([sys.executable, "-m", "venv", str(VENV_DIR)], check=True)
         subprocess.run(
-            [str(venv_py), "-m", "pip", "install", "-q", "--upgrade", "pip", *REQUIRED],
+            [str(venv_py), "-m", "pip", "install", "--progress-bar", "on",
+             "--upgrade", "pip", *REQUIRED],
             check=True,
         )
+        print("[setup] 依赖装好了。", file=sys.stderr)
     if Path(sys.executable).resolve() == venv_py.resolve():
         print("venv 里仍然缺依赖，请删掉 %s 重跑" % VENV_DIR, file=sys.stderr)
         sys.exit(1)
@@ -432,18 +438,20 @@ def main() -> int:
         out = pdf.with_suffix(".pptx")
     out.parent.mkdir(parents=True, exist_ok=True)
 
-    soffice = find_soffice(args.soffice)
-
-    if not has_text_layer(pdf):
-        print("[警告] 这份 PDF 前几页几乎取不到文字，很可能是扫描件。"
-              "转出来只会是图片，改不了字——需要先 OCR。", file=sys.stderr)
-
+    # 纯参数校验放在探外部依赖之前：--font-map 打错一个等号，不该收到
+    # 「去装 LibreOffice」这种把人指错方向的报错。
     extra_map = {}
     for m in args.font_map:
         if "=" not in m:
             die(f"--font-map 格式应为 '原名=新名'，收到：{m}")
         k, v = m.split("=", 1)
         extra_map[k.strip()] = v.strip()
+
+    soffice = find_soffice(args.soffice)
+
+    if not has_text_layer(pdf):
+        print("[警告] 这份 PDF 前几页几乎取不到文字，很可能是扫描件。"
+              "转出来只会是图片，改不了字——需要先 OCR。", file=sys.stderr)
 
     with tempfile.TemporaryDirectory(prefix="pdf2pptx-") as tmp:
         tmpdir = Path(tmp)
