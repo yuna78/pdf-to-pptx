@@ -5,16 +5,17 @@
   文字是<strong>真文本框</strong>，色块是<strong>真矢量形状</strong>，照片是<strong>真图片</strong>——不是每页一张截图。
 </p>
 
+<p align="center"><strong>简体中文</strong> · <a href="./README.en.md">English</a></p>
+
 <p align="center">
   <a href="https://github.com/yuna78/pdf-to-pptx/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/yuna78/pdf-to-pptx/ci.yml?branch=main&style=flat-square&label=CI&labelColor=1f2937"></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-3b82f6?style=flat-square&labelColor=1f2937"></a>
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=1f2937">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=1f2937">
   <img alt="LibreOffice" src="https://img.shields.io/badge/LibreOffice-required-18A303?style=flat-square&logo=libreoffice&logoColor=white&labelColor=1f2937">
-  <img alt="CJK" src="https://img.shields.io/badge/中文排版-已修 4 类坑-e11d48?style=flat-square&labelColor=1f2937">
-  <a href="./README.en.md"><img alt="English" src="https://img.shields.io/badge/docs-English-64748b?style=flat-square&labelColor=1f2937"></a>
+  <img alt="CJK" src="https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88-%E5%B7%B2%E4%BF%AE%204%20%E7%B1%BB%E5%9D%91-e11d48?style=flat-square&labelColor=1f2937">
 </p>
 
-<p align="center"><img src="./examples/before-after.png" alt="原始 PDF、LibreOffice 直转、pdf-to-pptx 三者同页对照" width="820"></p>
+<p align="center"><img src="./examples/figure-before-after.png" alt="原始 PDF、LibreOffice 直转、pdf-to-pptx 三者同页对照" width="820"></p>
 
 ```bash
 bin/pdf-to-pptx deck.pdf      # 产物 deck.pptx 就在 deck.pdf 旁边
@@ -24,6 +25,12 @@ bin/pdf-to-pptx deck.pdf      # 产物 deck.pptx 就在 deck.pdf 旁边
 换一台没装那个字体的机器，文字就在框里折行、撞进下一行。下面那栏是同一份文件过这个工具的结果。
 
 ---
+
+> **它首先是一个通用命令行工具**，其次才是 agent skill。
+> 终端里直接跑、写进 Makefile、放进 CI、被任何脚本调用都可以，不需要 Claude、不需要账号、不联网。
+> 同时它也是一个**通用 agent skill**：仓库根目录的 `SKILL.md` 是标准的 skill 描述文件，
+> Claude Code / Claude Desktop clone 到 skills 目录即可；Cursor、Codex、以及任何能调外部命令的
+> agent，把 `bin/` 下的可执行文件当工具注册进去就能用。
 
 ## 为什么需要它
 

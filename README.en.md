@@ -5,16 +5,17 @@
   Real text boxes, real vector shapes, real pictures — not one screenshot per slide.
 </p>
 
+<p align="center"><a href="./README.md">简体中文</a> · <strong>English</strong></p>
+
 <p align="center">
   <a href="https://github.com/yuna78/pdf-to-pptx/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/yuna78/pdf-to-pptx/ci.yml?branch=main&style=flat-square&label=CI&labelColor=1f2937"></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-3b82f6?style=flat-square&labelColor=1f2937"></a>
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=1f2937">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=1f2937">
   <img alt="LibreOffice" src="https://img.shields.io/badge/LibreOffice-required-18A303?style=flat-square&logo=libreoffice&logoColor=white&labelColor=1f2937">
   <img alt="CJK" src="https://img.shields.io/badge/CJK%20typography-4%20traps%20fixed-e11d48?style=flat-square&labelColor=1f2937">
-  <a href="./README.md"><img alt="中文" src="https://img.shields.io/badge/文档-中文-64748b?style=flat-square&labelColor=1f2937"></a>
 </p>
 
-<p align="center"><img src="./examples/before-after.png" alt="The same page as the original PDF, as LibreOffice converts it, and through pdf-to-pptx" width="820"></p>
+<p align="center"><img src="./examples/figure-before-after.png" alt="The same page as the original PDF, as LibreOffice converts it, and through pdf-to-pptx" width="820"></p>
 
 ```bash
 bin/pdf-to-pptx deck.pdf      # deck.pptx lands right next to deck.pdf
@@ -25,6 +26,13 @@ text boxes were measured for a font the machine doesn't have, so the text wraps 
 collides. The bottom panel is the same file through this tool.
 
 ---
+
+> **It is a general-purpose command-line tool first**, an agent skill second.
+> Run it in a terminal, put it in a Makefile, wire it into CI, call it from any script — no
+> Claude, no account, no network required. It is also a **portable agent skill**: `SKILL.md`
+> in the repo root is a standard skill description, so Claude Code / Claude Desktop pick it up
+> when cloned into the skills directory, and Cursor, Codex or any agent that can shell out can
+> register the executable in `bin/` as a tool.
 
 ## Why this exists
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate the README figure: original PDF vs LibreOffice alone vs pdf-to-pptx.
 
-Usage:  .venv/bin/python examples/make-figure.py [--page 3] [-o examples/before-after.png]
+Usage:  .venv/bin/python examples/make-figure.py [--page 3] [-o examples/figure-before-after.png]
 
 Needs LibreOffice, poppler and Pillow. Maintenance tool, not part of the conversion.
 """
@@ -105,7 +105,7 @@ def main() -> int:
     parser.add_argument("--pdf", type=Path, default=ROOT / "tests/fixtures/sample-deck.pdf")
     parser.add_argument("--page", type=int, default=3)
     parser.add_argument("--crop", type=float, default=0.74, help="keep this fraction of page height")
-    parser.add_argument("-o", "--output", type=Path, default=ROOT / "examples/before-after.png")
+    parser.add_argument("-o", "--output", type=Path, default=ROOT / "examples/figure-before-after.png")
     args = parser.parse_args()
 
     convert = ROOT / "scripts" / "convert.py"

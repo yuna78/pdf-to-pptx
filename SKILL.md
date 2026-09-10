@@ -65,3 +65,10 @@ description: >-
 - [ ] 没有叠字 / 文字跑出色块 / 文字被裁
 - [ ] 没有「兼容字符无法还原」的残留警告
 - [ ] 要外发的话，确认署名、logo、页脚是否需要换
+
+## 仓库
+
+本 skill 同时是开源仓库 <https://github.com/yuna78/pdf-to-pptx>（MIT）。
+它首先是一个**通用命令行工具**（`bin/pdf-to-pptx`，终端 / CI / 任何脚本都能调，不依赖 Claude），
+其次才是 agent skill；`SKILL.md` 是标准 skill 描述文件，任何支持 skill 或外部命令的 agent 都能用。
+改动这里的文件就是改仓库，改完记得 push。
